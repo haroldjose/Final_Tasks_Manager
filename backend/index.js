@@ -10,9 +10,16 @@ const taskRoutes = require("./routes/taskRoutes");
 
 const app = express(); // Crea una instancia de Express
 
-app.use(cors()); // Habilita CORS para permitir solicitudes desde otros dominios
+const corsOptions = {
+  origin: 'https://final-tasks-manager.vercel.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+};
+
+app.use(cors(corsOptions)); // Habilita CORS para permitir solicitudes desde otros dominios
 
 app.use(express.json()); // Habilita la interpretación de JSON en las solicitudes entrantes
+
 
 // Define las rutas de la API, rutas relacionadas con autenticación y tareas
 app.use("/api/auth", authRoutes);  
