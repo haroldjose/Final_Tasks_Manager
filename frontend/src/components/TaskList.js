@@ -22,31 +22,31 @@ const TaskList = ({ tasks, onEdit, onDelete }) => {
   });
 
   return (
-    <div>
-      <h3>Filtrar Tareas</h3>
-      <select  onChange={(e) => setFilterStatus(e.target.value)}>
+    <div class="auth-form">
+      <h3 class="hdash task-item h3">Filtrar Tareas</h3>
+      <select class="select" onChange={(e) => setFilterStatus(e.target.value)}>
         <option value="">Todos</option>
         <option value="pendiente">Pendiente</option>
         <option value="en progreso">En Progreso</option>
         <option value="completada">Completada</option>
       </select>
-      <input type="date" onChange={(e) => setFilterDate(e.target.value)} />
+      <input type="date" class="input" onChange={(e) => setFilterDate(e.target.value)} />
 
-      <ul >
+      <ul class="auth-form">
         {filteredTasks.map((task) => (
-          <li class="task" key={task.id}>
-            <h3>{task.title}</h3>
-            <p>{task.description}</p>
-            <p>Estado: {task.status}</p>
-            <p>Fecha límite: {task.dueDate ? task.dueDate.split("T")[0] : "No definida"}</p>
+          <li class="task-item" key={task.id}>
+            <h3 class="task-item  hdash">{task.title}</h3>
+            <p class="task-item ">{task.description}</p>
+            <p class="task-item ">Estado: {task.status}</p>
+            <p class="task-item ">Fecha límite: {task.dueDate ? task.dueDate.split("T")[0] : "No definida"}</p>
 
             {task.status !== "completada" && (
-              <button onClick={() => onEdit(task)}>Editar</button>
+              <button class="button buttondash" onClick={() => onEdit(task)}>Editar</button>
             )}
             {task.status === "en progreso" && (
-              <button class="" onClick={() => markAsCompleted(task.id)}>Completar</button>
+              <button class="button buttondash" onClick={() => markAsCompleted(task.id)}>Completar</button>
             )}
-            <button class="" onClick={() => onDelete(task.id)}>Eliminar</button>
+            <button class="button buttondash" onClick={() => onDelete(task.id)}>Eliminar</button>
           </li>
         ))}
       </ul>
@@ -55,3 +55,73 @@ const TaskList = ({ tasks, onEdit, onDelete }) => {
 };
 
 export default TaskList;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   return (
+//     <div className="bg-white p-6 rounded-lg shadow-lg">
+//       <h3 className="text-xl font-semibold mb-4">Filtrar Tareas</h3>
+//       <div className="flex space-x-4 mb-4">
+//         <select
+//           className="p-2 border rounded-lg"
+//           onChange={(e) => setFilterStatus(e.target.value)}
+//         >
+//           <option value="">Todos</option>
+//           <option value="pendiente">Pendiente</option>
+//           <option value="en progreso">En Progreso</option>
+//           <option value="completada">Completada</option>
+//         </select>
+//         <input
+//           type="date"
+//           className="p-2 border rounded-lg"
+//           onChange={(e) => setFilterDate(e.target.value)}
+//         />
+//       </div>
+
+//       <ul className="space-y-4">
+//         {filteredTasks.map((task) => (
+//           <li key={task.id} className="p-4 border rounded-lg shadow-md">
+//             <h3 className="text-lg font-semibold">{task.title}</h3>
+//             <p className="text-gray-600">{task.description}</p>
+//             <p className="text-sm text-gray-500">Estado: {task.status}</p>
+//             <p className="text-sm text-gray-500">Fecha límite: {task.dueDate ? task.dueDate.split("T")[0] : "No definida"}</p>
+//             <div className="flex space-x-2 mt-2">
+//               {task.status !== "completada" && (
+//                 <button
+//                   className="bg-yellow-500 text-white px-4 py-2 rounded-lg"
+//                   onClick={() => onEdit(task)}
+//                 >Editar</button>
+//               )}
+//               {task.status === "en progreso" && (
+//                 <button
+//                   className="bg-green-500 text-white px-4 py-2 rounded-lg"
+//                   onClick={() => markAsCompleted(task.id)}
+//                 >Completar</button>
+//               )}
+//               <button
+//                 className="bg-red-500 text-white px-4 py-2 rounded-lg"
+//                 onClick={() => onDelete(task.id)}
+//               >Eliminar</button>
+//             </div>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// export default TaskList;

@@ -39,19 +39,57 @@ const TaskForm = ({ task, onTaskSaved }) => {
         setStatus("Pendiente");
         setDueDate("");
     }
+
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Título" value={title} onChange={(e) => setTitle(e.target.value)} required />
-            <textarea placeholder="Descripción" value={description} onChange={(e) => setDescription(e.target.value)} />
-            <select value={status} onChange={(e) => setStatus(e.target.value)}>
+        <form class="auth-form task-form" onSubmit={handleSubmit}>
+            <input class="input" type="text" placeholder="Título" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            <textarea class="textarea" placeholder="Descripción" value={description} onChange={(e) => setDescription(e.target.value)} />
+            <select class="select" value={status} onChange={(e) => setStatus(e.target.value)}>
                 <option value="pendiente">Pendiente</option>
                 <option value="en progreso">En Progreso</option>
                 <option value="completada">Completada</option>
             </select>
-            <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
-            <button class="" type="submit">{task ? "Actualizar" : "Crear"} Tarea</button>
+            <input class="input" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+            <button class="button buttondash" type="submit">{task ? "Actualizar" : "Crear"} Tarea</button>
         </form>
     );
 };
 
 export default TaskForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//     return (
+//         <form onSubmit={handleSubmit} className="bg-white p-4 shadow rounded-lg space-y-3">
+//             <input type="text" placeholder="Título" value={title} onChange={(e) => setTitle(e.target.value)} required className="w-full p-2 border rounded-lg" />
+//             <textarea placeholder="Descripción" value={description} onChange={(e) => setDescription(e.target.value)} className="w-full p-2 border rounded-lg" />
+//             <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full p-2 border rounded-lg">
+//                 <option value="pendiente">Pendiente</option>
+//                 <option value="en progreso">En Progreso</option>
+//                 <option value="completada">Completada</option>
+//             </select>
+//             <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} className="w-full p-2 border rounded-lg" />
+//             <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-lg">{task ? "Actualizar" : "Crear"} Tarea</button>
+//         </form>
+//     );
+// };
+
+// export default TaskForm;
