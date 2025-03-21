@@ -25,14 +25,14 @@ const RegisterPage = () => {
 
     return (
         <div class="form-container">
-            <h2 class="text-md text-light mb-3">Registro</h2>
+            <h2 class="text">Registro</h2>
             <form onSubmit={handleSubmit}>
-                <input type="text" class="form-control mb-5 mt-2" placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
-                <input type="email" class="form-control mb-5 mt-2" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <input type="password" class="form-control mb-5 mt-2" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button class="btn btn-primary w-100" type="submit">Registrarse</button>
+                <input type="text" class="form form-change" placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
+                <input type="email" class="form form-change" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="password" class="form form-change" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <button class="btn " type="submit">Registrarse</button>
             </form>
-            <button class="btn btn-primary mt-3 w-100 " onClick={handleLogin}>Inicio sesion</button>
+            <button class="btn " onClick={handleLogin}>Inicio sesion</button>
         </div>
     );
 };

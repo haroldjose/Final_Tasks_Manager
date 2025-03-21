@@ -49,7 +49,7 @@ const TaskForm = ({ task, onTaskSaved }) => {
                 <option value="completada">Completada</option>
             </select>
             <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
-            <button class="btn btn-primary w-10" type="submit">{task ? "Actualizar" : "Crear"} Tarea</button>
+            <button class="" type="submit">{task ? "Actualizar" : "Crear"} Tarea</button>
         </form>
     );
 };

@@ -38,15 +38,18 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h2 class="text-md mb-3">Bienvenido {user?.name}</h2>
-      <button class="btn btn-primary w-10" onClick={logout}>Cerrar Sesión</button>
-
+      <div class="dashboard">
+        <h2>Bienvenido {user?.name}</h2>
+        <button onClick={logout}>Cerrar Sesión</button>
+      </div>
       <h3>{editingTask ? "Editar Tarea" : "Nueva Tarea"}</h3>
       <TaskForm task={editingTask} onTaskSaved={handleTaskSaved} />
 
       <h3>Mis Tareas</h3>
       <TaskList tasks={tasks} onEdit={setEditingTask} onDelete={handleDelete} />
-    </div>
+    </div >
+    
+
   );
 };
 

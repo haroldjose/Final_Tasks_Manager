@@ -24,7 +24,7 @@ const TaskList = ({ tasks, onEdit, onDelete }) => {
   return (
     <div>
       <h3>Filtrar Tareas</h3>
-      <select onChange={(e) => setFilterStatus(e.target.value)}>
+      <select  onChange={(e) => setFilterStatus(e.target.value)}>
         <option value="">Todos</option>
         <option value="pendiente">Pendiente</option>
         <option value="en progreso">En Progreso</option>
@@ -32,9 +32,9 @@ const TaskList = ({ tasks, onEdit, onDelete }) => {
       </select>
       <input type="date" onChange={(e) => setFilterDate(e.target.value)} />
 
-      <ul>
+      <ul >
         {filteredTasks.map((task) => (
-          <li key={task.id}>
+          <li class="task" key={task.id}>
             <h3>{task.title}</h3>
             <p>{task.description}</p>
             <p>Estado: {task.status}</p>
@@ -44,9 +44,9 @@ const TaskList = ({ tasks, onEdit, onDelete }) => {
               <button onClick={() => onEdit(task)}>Editar</button>
             )}
             {task.status === "en progreso" && (
-              <button class="btn btn-primary w-10" onClick={() => markAsCompleted(task.id)}>Completar</button>
+              <button class="" onClick={() => markAsCompleted(task.id)}>Completar</button>
             )}
-            <button class="btn btn-primary w-10" onClick={() => onDelete(task.id)}>Eliminar</button>
+            <button class="" onClick={() => onDelete(task.id)}>Eliminar</button>
           </li>
         ))}
       </ul>
