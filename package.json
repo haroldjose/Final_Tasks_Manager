@@ -1,0 +1,21 @@
+{
+  "name": "proyectotaskmanager",
+  "version": "1.0.0",
+  "description": "* React con React Router\r * Context API para manejo de estado\r * Axios para llamadas a la API\r * CSS Modules (según los componentes)\r * Vercel (para despliegue)\r ## Backend\r * Node.js con Express\r * PostgreSQL con Sequelize ORM\r * JWT para autenticación\r * bcrypt.js para hashing de contraseñas\r * Express Validator para validaciones\r * Render (para despliegue)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haroldjose/Final_Tasks_Manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/haroldjose/Final_Tasks_Manager/issues"
+  },
+  "homepage": "https://github.com/haroldjose/Final_Tasks_Manager#readme"
+}
