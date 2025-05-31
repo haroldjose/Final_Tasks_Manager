@@ -36,16 +36,10 @@ jobs:
         with:
           node-version: 18
 
-      # Backend
       - name: Instalar dependencias del backend
         working-directory: ./backend
         run: npm install
 
-      # - name: Correr tests del backend
-      #   working-directory: ./backend
-      #   run: npm test
-
-      # Frontend
       - name: Instalar dependencias del frontend
         working-directory: ./frontend
         run: npm install
@@ -53,3 +47,30 @@ jobs:
       - name: Build del frontend
         working-directory: ./frontend
         run: npm run build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Copiar archivos al servidor
+        run: |
+          rsync -avz --delete ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.REMOTE_DIR }}
+
+      - name: Deploy en servidor remoto (docker-compose up)
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+            cd ${{ secrets.REMOTE_DIR }}
+            docker-compose down
+            docker-compose up -d --build
+          EOF
