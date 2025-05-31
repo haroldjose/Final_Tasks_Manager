@@ -24,16 +24,43 @@ const LoginPage = () => {
   };
 
   return (
-    <div class="container auth-form auth-container">
-      <h2 class="h2">Iniciar Sesión</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="email" class="input"  placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+    // <div class="container auth-form auth-container">
+    //   <h2 class="h2">Iniciar Sesión</h2>
+    //   <form onSubmit={handleSubmit}>
+    //     <input type="email" class="input"  placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         
-        <input type="password" class="input" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
+    //     <input type="password" class="input" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
         
-        <button class="button" type="submit">Ingresar</button>
+    //     <button class="button" type="submit">Ingresar</button>
+    //   </form>
+    //   <button class="button" onClick={handleRegister}>Registarse</button>
+    // </div>
+    <div className="login-container">
+      <h2 className="login-title">Iniciar Sesión</h2>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <input
+          type="email"
+          className="login-input"
+          placeholder="Correo electrónico"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          className="login-input"
+          placeholder="Contraseña"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button className="login-button" type="submit">
+          Ingresar
+        </button>
       </form>
-      <button class="button" onClick={handleRegister}>Registarse</button>
+      <button className="login-secondary-button" onClick={handleRegister}>
+        Registrarse
+      </button>
     </div>
   );
 };

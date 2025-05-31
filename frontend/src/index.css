@@ -103,118 +103,91 @@ li{
 } 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+/* otros estilos */
+.login-container {
+  max-width: 400px;
+  margin: 5% auto;
+  padding: 30px;
+  background: #2c2f48;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  text-align: center;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-} */
-
-/* Dashboard */
-/* #dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+.login-title {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-#dashboard h1 {
-    color: #333;
-} */
-
-/* LoginPage */
-/* #login-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #fff;
-} */
-
-/* RegisterPage */
-/* #register-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #fff;
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.form-container {
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+.login-input {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffff;
+  font-size: 16px;
+  transition: box-shadow 0.3s ease;
 }
 
-input, button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.login-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(235, 87, 87, 0.3);
 }
 
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+.login-button,
+.login-secondary-button {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
-} */
-
-/* TaskForm */
-/* #task-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    background: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    margin-bottom: 20px;
-} */
-
-/* TaskList */
-/* #task-list {
-    list-style: none;
-    padding: 0;
+.login-button {
+  background-color: #eb5757;
+  color: white;
+  font-weight: bold;
 }
 
-.task-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background: #fff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-    border-radius: 5px;
-} */
+.login-button:hover {
+  background-color: #d94444;
+}
+
+.login-secondary-button {
+  background-color: transparent;
+  color: #eb5757;
+  font-weight: bold;
+  border: 2px solid #eb5757;
+  margin-top: 10px;
+}
+
+.login-secondary-button:hover {
+  background-color: #eb5757;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
