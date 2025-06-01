@@ -56,6 +56,10 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v3
 
+      - name: Hacer deploy a Render
+        run: |
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+
       
       - name: 🔌 Probar conexión SSH
         run: |
