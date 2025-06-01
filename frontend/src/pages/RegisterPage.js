@@ -40,7 +40,7 @@ const RegisterPage = () => {
         <input
           type="text"
           className="register-input"
-          placeholder="Nombre completo"
+          placeholder="Nombre completisimo por favor"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
