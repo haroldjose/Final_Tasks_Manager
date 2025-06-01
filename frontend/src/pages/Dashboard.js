@@ -37,17 +37,37 @@ const Dashboard = () => {
   };
 
   return (
-    <div class="auth-form">
-      <div>
-        <h2 class="hdash">Bienvenido {user?.name}</h2>
-        <button class="button buttondash"onClick={logout}>Cerrar Sesión</button>
-      </div>
-      <h3 class="hdash">{editingTask ? "Editar Tarea" : "Nueva Tarea"}</h3>
-      <TaskForm  task={editingTask} onTaskSaved={handleTaskSaved} />
+    // <div class="auth-form">
+    //   <div>
+    //     <h2 class="hdash">Bienvenido {user?.name}</h2>
+    //     <button class="button buttondash"onClick={logout}>Cerrar Sesión</button>
+    //   </div>
+    //   <h3 class="hdash">{editingTask ? "Editar Tarea" : "Nueva Tarea"}</h3>
+    //   <TaskForm  task={editingTask} onTaskSaved={handleTaskSaved} />
 
-      <h3 class="hdash">Mis Tareas</h3>
-      <TaskList  tasks={tasks} onEdit={setEditingTask} onDelete={handleDelete} />
-    </div >
+    //   <h3 class="hdash">Mis Tareas</h3>
+    //   <TaskList  tasks={tasks} onEdit={setEditingTask} onDelete={handleDelete} />
+    // </div >
+    <div className="dashboard-container">
+      <div className="dashboard-header">
+        <h2 className="dashboard-title">Bienvenido, {user?.name}</h2>
+        <button className="dashboard-logout" onClick={logout}>
+          Cerrar Sesión
+        </button>
+      </div>
+
+      <div className="dashboard-section">
+        <h3 className="dashboard-subtitle">
+          {editingTask ? "Editar Tarea" : "Nueva Tarea"}
+        </h3>
+        <TaskForm task={editingTask} onTaskSaved={handleTaskSaved} />
+      </div>
+
+      <div className="dashboard-section">
+        <h3 className="dashboard-subtitle">Mis Tareas</h3>
+        <TaskList tasks={tasks} onEdit={setEditingTask} onDelete={handleDelete} />
+      </div>
+    </div>
     
 
   );
