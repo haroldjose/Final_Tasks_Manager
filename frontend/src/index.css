@@ -174,6 +174,77 @@ li{
   color: white;
 }
 
+/* otro cambio */
+.register-container {
+  max-width: 400px;
+  margin: 5% auto;
+  padding: 30px;
+  background: #2c2f48;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.register-title {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register-input {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffff;
+  font-size: 16px;
+  transition: box-shadow 0.3s ease;
+}
+
+.register-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(235, 87, 87, 0.3);
+}
+
+.register-button,
+.register-secondary-button {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.register-button {
+  background-color: #eb5757;
+  color: white;
+  font-weight: bold;
+}
+
+.register-button:hover {
+  background-color: #d94444;
+}
+
+.register-secondary-button {
+  background-color: transparent;
+  color: #eb5757;
+  font-weight: bold;
+  border: 2px solid #eb5757;
+  margin-top: 10px;
+}
+
+.register-secondary-button:hover {
+  background-color: #eb5757;
+  color: white;
+}
+
 
 
 
