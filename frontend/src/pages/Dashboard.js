@@ -50,7 +50,7 @@ const Dashboard = () => {
     // </div >
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h2 className="dashboard-title">Bienvenido, {user?.name}</h2>
+        <h2 className="dashboard-title">Bienvenido Sr(a)., {user?.name}</h2>
         <button className="dashboard-logout" onClick={logout}>
           Cerrar Sesión
         </button>
