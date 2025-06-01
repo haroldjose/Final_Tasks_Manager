@@ -61,21 +61,21 @@ jobs:
           curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
 
       
-      - name: 🔌 Probar conexión SSH
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo ✅ Conectado correctamente"
+      # - name: 🔌 Probar conexión SSH
+      #   run: |
+      #     ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo ✅ Conectado correctamente"
 
-      - name: Configurar clave SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+      # - name: Configurar clave SSH
+      #   run: |
+      #     mkdir -p ~/.ssh
+      #     echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+      #     chmod 600 ~/.ssh/id_rsa
+      #     ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
 
-      - name: Copiar archivos al servidor
-        run: |
-          rsync -avz --delete ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.REMOTE_DIR }}
+      # - name: Copiar archivos al servidor
+      #   run: |
+      #     rsync -avz --delete ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.REMOTE_DIR }}
 
       - name: Deploy en servidor remoto (docker-compose up)
         run: |
