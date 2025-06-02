@@ -56,6 +56,14 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v3
 
+      - name: Verificar permisos
+        run: |
+        echo "Usuario actual: $(whoami)"
+        echo "Directorio HOME: $HOME"
+        ls -la $HOME
+        ls -la $HOME/.ssh || echo ".ssh no existe aún"
+  
+
       - name: Configurar clave SSH
         run: |
           mkdir -p ~/.ssh
