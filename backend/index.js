@@ -11,7 +11,7 @@ const taskRoutes = require("./routes/taskRoutes");
 const app = express(); // Crea una instancia de Express
 
 const corsOptions = {
-  origin: 'https://final-tasks-manager.vercel.app', 
+  origin: 'https://frontend-two-rouge-70.vercel.app', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'], 
 };
