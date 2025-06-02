@@ -14,10 +14,10 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "database_task_4gn8_user",
-    "password": "aRqe7XhNqqmxKWLuyEYvAm5hkkLMKnY0",
-    "database": "database_task_4gn8",
-    "host": "dpg-cvdj6ldrie7s739p5lrg-a",
+    "username": "taskdb_p7om_user",
+    "password": "9reG2qBfd5ZJi2aUs0GPq4aNQN16KJNp",
+    "database": "taskdb_p7om",
+    "host": "dpg-d0uq16u3jp1c738tpv4g-a",
     "dialect": "postgres"
   }
 }
