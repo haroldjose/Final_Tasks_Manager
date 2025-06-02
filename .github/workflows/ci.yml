@@ -55,13 +55,6 @@ jobs:
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
-
-      - name: Verificar permisos
-        run: |
-        echo "Usuario actual: $(whoami)"
-        echo "Directorio HOME: $HOME"
-        ls -la $HOME
-        ls -la $HOME/.ssh || echo ".ssh no existe aún"
   
 
       - name: Configurar clave SSH
@@ -71,13 +64,12 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Configurar clave SSH con debug
+      - name: Verificar permisos
         run: |
-          set -x
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          echo "Usuario actual: $(whoami)"
+          echo "Directorio HOME: $HOME"
+          ls -la $HOME
+          ls -la $HOME/.ssh || echo ".ssh no existe aún"
     
       
       - name: Debug entorno
