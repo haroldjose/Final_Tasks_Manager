@@ -48,6 +48,14 @@ jobs:
         working-directory: ./frontend
         run: npm run build
 
+      # - name: Ejecutar tests del backend
+      #   working-directory: ./backend
+      #   run: npm test
+
+      # - name: Ejecutar tests del frontend
+      #   working-directory: ./frontend
+      #   run: npm test
+
   deploy:
     runs-on: ubuntu-latest
     needs: build-and-test
@@ -56,15 +64,6 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v3
 
-      - name: Hacer deploy a Render
-        run: |
-          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
-
-      
-      - name: 🔌 Probar conexión SSH
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo ✅ Conectado correctamente"
-
       - name: Configurar clave SSH
         run: |
           mkdir -p ~/.ssh
@@ -72,6 +71,13 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Hacer deploy a Render
+        run: |
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+
+      - name: Probar conexión SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo ✅ Conectado correctamente"
 
       - name: Copiar archivos al servidor
         run: |
@@ -84,3 +90,9 @@ jobs:
             docker-compose down
             docker-compose up -d --build
           EOF
+
+          
+          
+            # - name: Hacer deploy a Render
+            #   run: |
+            #     curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
