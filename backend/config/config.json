@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgress",
-    "database": "database_task",
-    "host": "127.0.0.1",
+    "username": "taskdb_p7om_user",
+    "password": "9reG2qBfd5ZJi2aUs0GPq4aNQN16KJNp",
+    "database": "taskdb_p7om",
+    "host": "dpg-d0uq16u3jp1c738tpv4g-a",
     "dialect": "postgres"
   },
   "test": {
