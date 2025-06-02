@@ -62,6 +62,17 @@ jobs:
           printf "%s\n" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+      
+      - name: Debug entorno
+        run: |
+         echo "HOME=$HOME"
+         whoami
+         ls -la ~
+    
+      - name: Forzar creación del directorio SSH
+        run: |
+         mkdir -p ~/.ssh || true
+   
 
       - name: Hacer deploy a Render
         run: |
