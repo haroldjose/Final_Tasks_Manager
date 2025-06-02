@@ -67,7 +67,7 @@ jobs:
       - name: Configurar clave SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          printf "%s\n" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
@@ -93,6 +93,4 @@ jobs:
 
           
           
-            # - name: Hacer deploy a Render
-            #   run: |
-            #     curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+            
