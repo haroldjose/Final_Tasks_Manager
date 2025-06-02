@@ -29,7 +29,7 @@ const TaskForm = ({ task, onTaskSaved }) => {
             onTaskSaved();
             voidForm();
         } catch (error) {
-            console.error("Error al guardar tarea", error);
+            console.error("Error al guardar la tarea a realizar", error);
         }
     };
 
