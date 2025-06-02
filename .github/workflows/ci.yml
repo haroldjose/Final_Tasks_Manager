@@ -1,117 +1,86 @@
-name: CI Pipeline
+name: Fullstack CI/CD
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  build-and-test:
+  # -----------------------------
+  # 🛠️ BUILD PIPELINE
+  # -----------------------------
+  build-frontend:
+    name: 🔧 Build Frontend
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:14
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: testdb
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-    env:
-      DATABASE_URL: postgres://postgres:password@localhost:5432/testdb
 
     steps:
-      - name: Checkout código
+      - name: 🛎️ Checkout code
         uses: actions/checkout@v3
 
-      - name: Configurar Node.js
+      - name: 🟦 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Instalar dependencias del backend
-        working-directory: ./backend
-        run: npm install
-
-      - name: Instalar dependencias del frontend
+      - name: 📦 Install frontend deps
         working-directory: ./frontend
         run: npm install
 
-      - name: Build del frontend
+      - name: ⚙️ Build frontend
         working-directory: ./frontend
         run: npm run build
 
-  deploy:
+      - name: 🗃️ Upload frontend build
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: frontend/build
+
+  build-backend:
+    name: 🐳 Build Backend Docker Image
     runs-on: ubuntu-latest
-    needs: build-and-test
+    needs: build-frontend
 
     steps:
-      - name: Checkout código
+      - name: 🛎️ Checkout code
         uses: actions/checkout@v3
-  
 
-      # - name: Configurar clave SSH
-      #   run: |
-      #     mkdir -p ~/.ssh
-      #     printf "%s\n" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-      #     chmod 600 ~/.ssh/id_rsa
-      #     ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+      - name: 🔐 Login to DockerHub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: Configurar clave SSH con base64
+      - name: 🐳 Build backend image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/backend:latest ./backend
+
+      - name: 📤 Push to DockerHub
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/backend:latest
+
+  # -----------------------------
+  # 🚀 DEPLOY PIPELINE
+  # -----------------------------
+  deploy-frontend:
+    name: 🚀 Deploy Frontend to Vercel
+    runs-on: ubuntu-latest
+    needs: build-frontend
+
+    steps:
+      - name: 🛎️ Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🟦 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 🚀 Deploy to Vercel
         run: |
-         mkdir -p ~/.ssh
-         echo "${{ secrets.SSH_PRIVATE_KEY_BASE64 }}" | base64 -d > ~/.ssh/id_rsa
-         chmod 600 ~/.ssh/id_rsa
-         ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          npm install -g vercel
+          vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --cwd frontend
 
-    
+  deploy-backend:
+    name: 🚀 Deploy Backend to Render
+    runs-on: ubuntu-latest
+    needs: build-backend
 
-      - name: Verificar permisos
-        run: |
-          echo "Usuario actual: $(whoami)"
-          echo "Directorio HOME: $HOME"
-          ls -la $HOME
-          ls -la $HOME/.ssh || echo ".ssh no existe aún"
-    
-      
-      - name: Debug entorno
-        run: |
-         echo "HOME=$HOME"
-         whoami
-         ls -la ~
-    
-      - name: Forzar creación del directorio SSH
-        run: |
-         mkdir -p ~/.ssh || true
-   
-
-      - name: Hacer deploy a Render
-        run: |
-          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
-
-      - name: Probar conexión SSH
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo ✅ Conectado correctamente"
-
-      - name: Copiar archivos al servidor
-        run: |
-          rsync -avz --delete ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.REMOTE_DIR }}
-
-      - name: Deploy en servidor remoto (docker-compose up)
-        run: |
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-            cd ${{ secrets.REMOTE_DIR }}
-            docker-compose down
-            docker-compose up -d --build
-          EOF
-
-          
-          
-            
+    steps:
+      - name: 🔁 Trigger Render Deploy Hook
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
