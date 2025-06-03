@@ -24,51 +24,51 @@ const RegisterPage = () => {
       };
 
     return (
-        // <div class="container auth-container auth-form">
-        //     <h2 class="h2">Registro</h2>
-        //     <form onSubmit={handleSubmit}>
-        //         <input type="text" class="input" placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
-        //         <input type="email" class="input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        //         <input type="password" class="input" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
-        //         <button class="button" type="submit">Registrarse</button>
-        //     </form>
-        //     <button class="button" onClick={handleLogin}>Inicio sesion</button>
-        // </div>
-        <div className="register-container">
-      <h2 className="register-title">Registro</h2>
-      <form className="register-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="register-input"
-          placeholder="Nombre completisimo por favor"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          className="register-input"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          className="register-input"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button className="register-button" type="submit">
-          Registrarse
-        </button>
-      </form>
-      <button className="register-secondary-button" onClick={handleLogin}>
-        Iniciar sesión
-      </button>
-    </div>
+        <div class="container auth-container auth-form">
+            <h2 class="h2">Registro</h2>
+            <form onSubmit={handleSubmit}>
+                <input type="text" class="input" placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
+                <input type="email" class="input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="password" class="input" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <button class="button" type="submit">Registrarse</button>
+            </form>
+            <button class="button" onClick={handleLogin}>Inicio sesion</button>
+        </div>
+    //     <div className="register-container">
+    //   <h2 className="register-title">Registro</h2>
+    //   <form className="register-form" onSubmit={handleSubmit}>
+    //     <input
+    //       type="text"
+    //       className="register-input"
+    //       placeholder="Nombre completo"
+    //       value={name}
+    //       onChange={(e) => setName(e.target.value)}
+    //       required
+    //     />
+    //     <input
+    //       type="email"
+    //       className="register-input"
+    //       placeholder="Correo electrónico"
+    //       value={email}
+    //       onChange={(e) => setEmail(e.target.value)}
+    //       required
+    //     />
+    //     <input
+    //       type="password"
+    //       className="register-input"
+    //       placeholder="Contraseña"
+    //       value={password}
+    //       onChange={(e) => setPassword(e.target.value)}
+    //       required
+    //     />
+    //     <button className="register-button" type="submit">
+    //       Registrarse
+    //     </button>
+    //   </form>
+    //   <button className="register-secondary-button" onClick={handleLogin}>
+    //     Iniciar sesión
+    //   </button>
+    // </div>
     );
 };
 
