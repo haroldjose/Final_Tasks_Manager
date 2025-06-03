@@ -41,17 +41,57 @@ const TaskForm = ({ task, onTaskSaved }) => {
     }
 
     return (
-        <form class="auth-form task-form" onSubmit={handleSubmit}>
-            <input class="input" type="text" placeholder="Título" value={title} onChange={(e) => setTitle(e.target.value)} required />
-            <textarea class="textarea" placeholder="Descripción" value={description} onChange={(e) => setDescription(e.target.value)} />
-            <select class="select" value={status} onChange={(e) => setStatus(e.target.value)}>
-                <option value="pendiente">Pendiente</option>
-                <option value="en progreso">En Progreso</option>
-                <option value="completada">Completada</option>
-            </select>
-            <input class="input" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
-            <button class="button buttondash" type="submit">{task ? "Actualizar" : "Crear"} Tarea</button>
-        </form>
+        // <form class="auth-form task-form" onSubmit={handleSubmit}>
+        //     <input class="input" type="text" placeholder="Título" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        //     <textarea class="textarea" placeholder="Descripción" value={description} onChange={(e) => setDescription(e.target.value)} />
+        //     <select class="select" value={status} onChange={(e) => setStatus(e.target.value)}>
+        //         <option value="pendiente">Pendiente</option>
+        //         <option value="en progreso">En Progreso</option>
+        //         <option value="completada">Completada</option>
+        //     </select>
+        //     <input class="input" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+        //     <button class="button buttondash" type="submit">{task ? "Actualizar" : "Crear"} Tarea</button>
+        // </form>
+
+        <form className="task-form" onSubmit={handleSubmit}>
+  <input
+    className="task-input"
+    type="text"
+    placeholder="Título de la tarea"
+    value={title}
+    onChange={(e) => setTitle(e.target.value)}
+    required
+  />
+
+  <textarea
+    className="task-textarea"
+    placeholder="Descripción"
+    value={description}
+    onChange={(e) => setDescription(e.target.value)}
+  />
+
+  <select
+    className="task-select"
+    value={status}
+    onChange={(e) => setStatus(e.target.value)}
+  >
+    <option value="pendiente">Pendiente</option>
+    <option value="en progreso">En Progreso</option>
+    <option value="completada">Completada</option>
+  </select>
+
+  <input
+    className="task-input"
+    type="date"
+    value={dueDate}
+    onChange={(e) => setDueDate(e.target.value)}
+  />
+
+  <button className="task-button" type="submit">
+    {task ? "Actualizar" : "Crear"} Tarea
+  </button>
+</form>
+
     );
 };
 
