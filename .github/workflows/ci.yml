@@ -52,7 +52,16 @@ jobs:
       - name:  Push to DockerHub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/backend:latest
 
-  
+
+  deploy-backend:
+    name:  Deploy Backend to Render
+    runs-on: ubuntu-latest
+    needs: build-backend
+
+    steps:
+      - name:  Trigger Render Deploy Hook
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+
   deploy-frontend:
     name:  Deploy Frontend to Vercel
     runs-on: ubuntu-latest
@@ -70,13 +79,4 @@ jobs:
       - name:  Deploy to Vercel
         run: |
           npm install -g vercel
-          vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --cwd frontend --yes
-
-  deploy-backend:
-    name:  Deploy Backend to Render
-    runs-on: ubuntu-latest
-    needs: build-backend
-
-    steps:
-      - name:  Trigger Render Deploy Hook
-        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+          vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --cwd frontend --yes      
